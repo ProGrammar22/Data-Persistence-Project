@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class DeathZone : MonoBehaviour
 {
-    public MainManager Manager;
+    public GameManager Manager;
+
+    public int m_PointsNew;
 
     private void OnCollisionEnter(Collision other)
     {
