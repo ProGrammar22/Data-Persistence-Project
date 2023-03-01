@@ -69,6 +69,10 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 
     void AddPoint(int point)
     {
