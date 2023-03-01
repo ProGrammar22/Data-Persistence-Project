@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MainManager.Instance.BestScoreText.SetActive(false);
         CheckScore();
         MainManager.Instance.SaveName();
         LoadScore();
@@ -82,6 +83,8 @@ public class GameManager : MonoBehaviour
         m_GameOver = true;
         CheckScore();
         SaveScore();
+        MainManager.Instance.bestScoreText.text = bestScoreText.text;
+        MainManager.Instance.SaveBestScoreText();
         GameOverText.SetActive(true);
     }
     public void CheckScore()

@@ -19,8 +19,9 @@ public class MenuUIHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MainManager.Instance.LoadName();
-        bestScoreText.text = $"Best Score : {MainManager.Instance.bestPlayer} : {MainManager.Instance.bestScore}";
+        MainManager.Instance.BestScoreText.SetActive(true);
+        MainManager.Instance.LoadBestScoreText();
+        bestScoreText.text = MainManager.Instance.bestScoreText.text;
     }
     public void StartNew()
     {

@@ -13,6 +13,7 @@ public class MainManager : MonoBehaviour
     public int bestScore;
     public Text bestScoreText;
     public InputField inputField;
+    public GameObject BestScoreText;
 
     public static MainManager Instance;
 
@@ -42,12 +43,32 @@ public class MainManager : MonoBehaviour
         public int bestScore;
         public string bestPlayer;
     }
+    public void SaveBestScoreText()
+    {
+        SaveData data = new SaveData();
+        data.bestScoreText = bestScoreText.text;
+
+        string json = JsonUtility.ToJson(data);
+
+        File.WriteAllText(Application.persistentDataPath + "/savefile3.json", json);
+    }
+    public void LoadBestScoreText()
+    {
+        string path = Application.persistentDataPath + "/savefile3.json";
+
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+            bestScoreText.text = data.bestScoreText;
+        }
+    }
     public void SaveName()
     {
         SaveData data = new SaveData();
         data.playerName = playerName;
         data.inputField = inputField.text;
-        data.bestScoreText = bestScoreText.text;
         data.bestScore = bestScore;
         data.bestPlayer = bestPlayer;
 
@@ -66,7 +87,6 @@ public class MainManager : MonoBehaviour
 
             playerName = data.playerName;
             inputField.text = data.playerName;
-            bestScoreText.text = data.bestScoreText;
             bestScore = data.bestScore;
             bestPlayer = data.bestPlayer;
         }
